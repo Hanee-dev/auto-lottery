@@ -1,0 +1,32 @@
+name: Run Lotto Result Job
+
+on:
+  schedule:
+    - cron: '0 22 * * 6'
+  workflow_dispatch:
+
+jobs:
+  run-lotto-result:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Run Lotto Result Job
+        env:
+          DH_LOTTERY_ID: ${{ secrets.DH_LOTTERY_ID }}
+          DH_LOTTERY_PW: ${{ secrets.DH_LOTTERY_PW }}
+        run: ./gradlew bootRun --args='--spring.batch.job.name=lottoResult'
