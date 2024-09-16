@@ -22,8 +22,7 @@ public class LoginDhLotteryTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         try {
-            PlaywrightConfig config = PlaywrightConfig.getInstance();
-            Page page = config.getPlaywrightPage();
+            Page page = PlaywrightConfig.getInstance().getPage();
 
             // 1. 페이지 접근 및 로그인
             page.navigate("https://dhlottery.co.kr/user.do?method=login");

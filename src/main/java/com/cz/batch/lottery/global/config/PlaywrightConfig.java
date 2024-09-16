@@ -5,20 +5,21 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import jakarta.annotation.PreDestroy;
+import lombok.Getter;
 
-
+@Getter
 public class PlaywrightConfig {
     private static PlaywrightConfig playwrightConfig;
 
-    private Playwright playwright;
-    private Browser browser;
-    private Page page;
+    private final Playwright playwright;
+    private final Browser browser;
+    private final Page page;
 
     private PlaywrightConfig() {
         try {
             playwright = Playwright.create();
-//            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-            browser = playwright.chromium().launch();
+            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+//            browser = playwright.chromium().launch();
             page = browser.newPage();
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize Playwright", e);
@@ -30,10 +31,6 @@ public class PlaywrightConfig {
             playwrightConfig = new PlaywrightConfig();
 
         return playwrightConfig;
-    }
-
-    public Page getPlaywrightPage() {
-        return page;
     }
 
     @PreDestroy

@@ -31,7 +31,7 @@ public class LottoResultJob {
 				.from(this.loginDhLotteryStep(jobRepository, platformTransactionManager))
 					.on("*")
 					.to(lottoResultStep(jobRepository, platformTransactionManager))
-					.next(this.sendResultStep(jobRepository, platformTransactionManager))
+					.next(this.sendResultStep(jobRepository, platformTransactionManager)) // TODO Fail Handling
 					.on("*")
 					.end()
 				.end()

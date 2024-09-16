@@ -20,6 +20,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.jsoup:jsoup:1.15.3'
     implementation 'com.microsoft.playwright:playwright:1.46.0'
 
     compileOnly 'org.projectlombok:lombok'
