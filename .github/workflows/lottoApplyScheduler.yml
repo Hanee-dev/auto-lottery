@@ -26,4 +26,7 @@ jobs:
         run: ./gradlew build
 
       - name: Run Lotto Apply Job
+        env:
+          DH_LOTTERY_ID: ${{ secrets.DH_LOTTERY_ID }}
+          DH_LOTTERY_PW: ${{ secrets.DH_LOTTERY_PW }}
         run: ./gradlew bootRun --args='--spring.batch.job.name=lottoApply'

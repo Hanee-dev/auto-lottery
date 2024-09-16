@@ -12,3 +12,8 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+dh:
+  user:
+    id: ${DH_LOTTERY_ID}
+    pw: ${DH_LOTTERY_PW}
